@@ -1,11 +1,17 @@
 # ==============================================================================
-# Suyog Textile — cPanel Git Deployment Configuration (.cpanel.yml)
-# Document Root: /home/c9fct449atzo/public_html/
+# Suyog Collection — cPanel Git Deployment Configuration (.cpanel.yml)
+#
+# LOUD TODO:
+# In cPanel, find your exact Linux username and the Document Root for suyogcollection.in:
+#   1. Go to cPanel > Domains > locate 'suyogcollection.in' and read the 'Document Root' column.
+#   2. Replace 'TODO_CPANEL_USER' below with your actual cPanel Linux username.
+#   3. Replace 'TODO_DOCUMENT_ROOT' below with your domain's actual document root folder
+#      (e.g., 'public_html' if primary, or 'suyogcollection.in' if addon domain).
 # ==============================================================================
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/c9fct449atzo/public_html/
+    - export DEPLOYPATH=/home/TODO_CPANEL_USER/TODO_DOCUMENT_ROOT/
     - /bin/mkdir -p $DEPLOYPATH
     - /bin/cp -R public/. $DEPLOYPATH
     - /bin/sh -c 'echo "commit $(git rev-parse --short HEAD 2>/dev/null) deployed $(date -u)" > $DEPLOYPATH/deploy-check.txt'

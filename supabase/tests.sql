@@ -1,5 +1,5 @@
 -- ==============================================================================
--- Suyog Textile — Supabase Verification & RLS Security Tests
+-- Suyog Collection — Supabase Verification & RLS Security Tests
 -- File: supabase/tests.sql
 -- Run in Supabase SQL Editor to verify security boundaries, functions & RLS.
 -- ==============================================================================
@@ -14,7 +14,7 @@ declare
   test_threshold_fee integer;
   test_err_caught boolean := false;
 begin
-  raise notice '>>> Starting Suyog Textile Security & RLS Test Suite...';
+  raise notice '>>> Starting Suyog Collection Security & RLS Test Suite...';
 
   -- TEST 1: Anonymous Role Policy Checks
   -- Simulate anonymous client

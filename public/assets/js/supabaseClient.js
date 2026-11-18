@@ -1,5 +1,5 @@
 /**
- * Suyog Textile — Supabase Client Integration
+ * Suyog Collection — Supabase Client Integration
  * Loads Supabase client using pinned UMD build from CDN.
  * Gracefully handles offline / unconfigured state with a WhatsApp assistance prompt.
  */
@@ -25,7 +25,7 @@
       });
       isConfigured = true;
     } catch (err) {
-      console.warn('[Suyog Textile] Supabase initialization error:', err);
+      console.warn('[Suyog Collection] Supabase initialization error:', err);
       client = null;
       isConfigured = false;
     }
@@ -48,7 +48,7 @@
     if (!target) return;
 
     var waNum = (window.SITE_CONFIG && window.SITE_CONFIG.whatsappNumber) || '918669396037';
-    var waUrl = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent('Namaste Suyog Textile, I need help browsing your collection.');
+    var waUrl = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent('Namaste Suyog Collection, I need help browsing your collection.');
 
     var msg = customMessage || 'Our real-time collection is temporarily syncing. You can browse directly with our showroom stylist on WhatsApp!';
 

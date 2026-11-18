@@ -1,5 +1,5 @@
 -- ==============================================================================
--- Suyog Textile — Supabase Database Schema
+-- Suyog Collection — Supabase Database Schema
 -- File: supabase/schema.sql
 -- All tables in public schema with Row Level Security (RLS) enabled.
 -- All monetary amounts stored as integer Indian Rupees (INR) - NO FLOATS.

@@ -1,23 +1,23 @@
 /**
- * Suyog Textile — Shared Layout Component
+ * Suyog Collection — Shared Layout Component
  * Renders consistent Announcement Bar, Header, Mobile Navigation, and Footer across all pages.
  */
 (function() {
   function renderLayout() {
     const config = window.SITE_CONFIG || {};
-    const brandName = config.brandName || "Suyog Textile";
+    const brandName = config.brandName || "Suyog Collection";
     const tagline = config.tagline || "Traditional Indian Wear";
     const threshold = config.freeShippingThreshold || 1499;
     const address = config.address || "Lahoti Mala, 484, Jadhav Sankul road, Ashoknagar, Satpur Colony, Nashik, Maharashtra 422007";
     const mapsUrl = config.mapsUrl || "https://maps.google.com/?q=Lahoti+Mala,+484,+Jadhav+Sankul+road,+Ashoknagar,+Satpur+Colony,+Nashik,+Maharashtra+422007";
     const storeHours = config.storeHours || "10:00 AM – 8:30 PM, all days";
-    const email = config.email || "contact@suyogtextile.in";
+    const email = config.email || "contact@suyogcollection.in";
     const phones = config.phones || [
       { display: "0253 4515460", tel: "02534515460" },
       { display: "+91 86693 96037", tel: "+918669396037" }
     ];
     const waUrl = config.whatsappUrl || "https://wa.me/918669396037";
-    const trackOrderWa = `${waUrl}?text=${encodeURIComponent("Hi Suyog Textile, I would like to track my order.")}`;
+    const trackOrderWa = `${waUrl}?text=${encodeURIComponent("Hi Suyog Collection, I would like to track my order.")}`;
 
     // ─── 1. Announcement Bar ───
     const announcementEl = document.getElementById('site-announcement') || document.querySelector('.announcement-bar');

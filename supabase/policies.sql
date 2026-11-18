@@ -1,5 +1,5 @@
 -- ==============================================================================
--- Suyog Textile — Row Level Security (RLS) Policies
+-- Suyog Collection — Row Level Security (RLS) Policies
 -- File: supabase/policies.sql
 -- Run after schema.sql.
 -- ==============================================================================

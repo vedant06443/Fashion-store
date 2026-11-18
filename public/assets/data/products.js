@@ -1,5 +1,5 @@
 /**
- * Suyog Textile — Central Product Catalog
+ * Suyog Collection — Central Product Catalog
  * Single Source of Truth for Home, Shop, New Arrivals, and Style Studio.
  */
 window.PRODUCTS_DATA = [

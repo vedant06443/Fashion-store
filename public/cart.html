@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Shopping Bag — Suyog Textile</title>
+  <title>Shopping Bag — Suyog Collection</title>
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -28,7 +28,7 @@
       <div class="desktop-nav-inner">
         <div class="desktop-logo-wrap">
           <a href="index.html" class="navbar-logo">
-            <img src="assets/images/logo.png" alt="Suyog Textile" class="brand-logo-img" height="46" width="46" style="height:46px;width:auto;object-fit:contain">
+            <img src="assets/images/logo.png" alt="Suyog Collection" class="brand-logo-img" height="46" width="46" style="height:46px;width:auto;object-fit:contain">
             <span class="brand-text-wrap">
               <span class="brand-name">Suyog <span class="brand-highlight">Textile</span></span>
               <small class="navbar-tagline">Traditional Indian Wear</small>
@@ -67,7 +67,7 @@
   <!-- Main Cart Section -->
   <main class="container my-5" style="min-height:55vh;">
     <h1 style="font-family:var(--font-brand);font-size:clamp(1.6rem, 3vw, 2.2rem);margin-bottom:8px;">Your Shopping Bag</h1>
-    <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:28px;">Live verified inventory and prices from Suyog Textile showroom.</p>
+    <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:28px;">Live verified inventory and prices from Suyog Collection showroom.</p>
 
     <div class="row g-4" id="cartGridContainer">
       <div class="col-lg-8">
@@ -126,7 +126,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-bottom">
-      <p>© 2026 Suyog Textile. Real-Time Indian Clothing.</p>
+      <p>© 2026 Suyog Collection. Real-Time Indian Clothing.</p>
     </div>
   </footer>
 
@@ -251,7 +251,7 @@
       if (currentCartData.items.length === 0) return;
 
       const itemsText = currentCartData.items.map(i => `• ${i.qty}x ${i.name} (${i.size}) - ₹${i.totalPrice}`).join('\n');
-      const msg = `Namaste Suyog Textile, I want to order the following from my shopping bag:\n\n${itemsText}\n\nSubtotal: ₹${currentCartData.subtotal}\nShipping: Free\n\nPlease confirm availability!`;
+      const msg = `Namaste Suyog Collection, I want to order the following from my shopping bag:\n\n${itemsText}\n\nSubtotal: ₹${currentCartData.subtotal}\nShipping: Free\n\nPlease confirm availability!`;
       window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 

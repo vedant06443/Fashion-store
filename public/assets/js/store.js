@@ -1,5 +1,5 @@
 /**
- * Suyog Textile — Modernized Store Engine with Supabase Integration
+ * Suyog Collection — Modernized Store Engine with Supabase Integration
  * Client Cart stores ONLY { id, size, qty }.
  * Prices, stock, discounts, shipping, and totals are computed only via the database.
  */
@@ -7,7 +7,7 @@
 const Store = {
   getConfig() {
     return window.SITE_CONFIG || {
-      brandName: "Suyog Textile",
+      brandName: "Suyog Collection",
       freeShippingThreshold: 1499,
       shippingFee: 0,
       whatsappNumber: "918669396037"
@@ -275,7 +275,7 @@ const Store = {
   inquireProductWhatsApp(productId) {
     const cfg = this.getConfig();
     const wa = cfg.whatsappNumber || "918669396037";
-    const msg = `Namaste Suyog Textile, I am inquiring about product ID #${productId} on your online store. Could you share more details?`;
+    const msg = `Namaste Suyog Collection, I am inquiring about product ID #${productId} on your online store. Could you share more details?`;
     window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
   },
 

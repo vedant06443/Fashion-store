@@ -1,70 +1,118 @@
 # ==============================================================================
-# Suyog Textile — Apache Configuration (.htaccess)
+# Suyog Textile — Apache Web Server Configuration (public/.htaccess)
+# Designed for GoDaddy cPanel Apache with robust module fallbacks.
 # ==============================================================================
 
-# Set DirectoryIndex so index.html loads by default at root https://suyogtextile.in/
-DirectoryIndex index.html index.php
+# 1. Default Index File Order
+<IfModule mod_dir.c>
+  DirectoryIndex index.html index.htm
+</IfModule>
 
-RewriteEngine On
+# 2. Prevent Directory Browsing
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
 
-# 1. Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# 2. Friendly Category and Page Routing
-RewriteRule ^sarees/?$ shop.html?cat=sarees [L,QSA]
-RewriteRule ^salwar-suits/?$ shop.html?cat=salwar-suits [L,QSA]
-RewriteRule ^lehengas/?$ shop.html?cat=lehengas [L,QSA]
-RewriteRule ^kurtis/?$ shop.html?cat=kurtis [L,QSA]
-RewriteRule ^dresses/?$ shop.html?cat=dresses [L,QSA]
-RewriteRule ^mens-wear/?$ shop.html?cat=mens-wear [L,QSA]
-RewriteRule ^catalog/?$ shop.html [L,QSA]
-RewriteRule ^products/?$ shop.html [L,QSA]
-RewriteRule ^new-arrivals/?$ shop.html [L,QSA]
-RewriteRule ^offers/?$ offers.html [L,QSA]
-RewriteRule ^studio/?$ studio.html [L,QSA]
-RewriteRule ^wishlist/?$ wishlist.html [L,QSA]
-RewriteRule ^cart/?$ cart.html [L,QSA]
-RewriteRule ^checkout/?$ checkout.html [L,QSA]
-RewriteRule ^order-success/?$ order-success.html [L,QSA]
-RewriteRule ^order-confirmation/?$ order-success.html [L,QSA]
-
-# Friendly user account & auth routing
-RewriteRule ^login/?$ login.html [L,QSA]
-RewriteRule ^account/?$ account.html [L,QSA]
-RewriteRule ^admin/?$ admin/index.html [L,QSA]
-RewriteRule ^register/?$ login.html [R=301,L]
-RewriteRule ^orders/?$ account.html [R=301,L]
-RewriteRule ^order-detail/?$ account.html [R=301,L]
-RewriteRule ^invoice/?$ account.html [R=301,L]
-
-RewriteRule ^contact/?$ contact.html [L,QSA]
-RewriteRule ^about/?$ about.html [L,QSA]
-RewriteRule ^size-guide/?$ size-guide.html [L,QSA]
-RewriteRule ^privacy/?$ privacy.html [L,QSA]
-RewriteRule ^terms/?$ terms.html [L,QSA]
-RewriteRule ^shipping-returns/?$ shipping-returns.html [L,QSA]
-
-# Error 404 Page
+# 3. Custom Error Page
 ErrorDocument 404 /404.html
 
-# 3. Clean Extensionless URLs (e.g. /shop loads shop.html)
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [L]
+# 4. Security & Caching Headers
+<IfModule mod_headers.c>
+  # Essential Security Headers
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
 
-# 4. Browser Caching for Fast Performance
+  # Prevent stale cache for HTML documents and client configuration
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  <Files "config.js">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </Files>
+</IfModule>
+
+# 5. Access Control: Block Sensitive Files
+# Blocks access to .git, .cpanel.yml, *.sql, *.md, and any deploy-check files other than deploy-check.txt
+<IfModule mod_authz_core.c>
+  <FilesMatch "(^\.git|\.cpanel\.yml$|\.sql$|\.md$|^deploy-check(?!(\.txt$)))">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "(^\.git|\.cpanel\.yml$|\.sql$|\.md$|^deploy-check(?!(\.txt$)))">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+# 6. URL Rewriting & Routing
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS without redirect loops (checks HTTPS and reverse-proxy header)
+  RewriteCond %{HTTPS} !on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 301 Permanent Redirects to / for removed legacy pages
+  RewriteRule ^admin\.html$ / [R=301,L]
+  RewriteRule ^register\.html$ / [R=301,L]
+  RewriteRule ^orders\.html$ / [R=301,L]
+  RewriteRule ^order-detail\.html$ / [R=301,L]
+  RewriteRule ^invoice\.html$ / [R=301,L]
+
+  # Clean category routes
+  RewriteRule ^sarees/?$ shop.html?cat=sarees [L,QSA]
+  RewriteRule ^salwar-suits/?$ shop.html?cat=salwar-suits [L,QSA]
+  RewriteRule ^lehengas/?$ shop.html?cat=lehengas [L,QSA]
+  RewriteRule ^kurtis/?$ shop.html?cat=kurtis [L,QSA]
+  RewriteRule ^dresses/?$ shop.html?cat=dresses [L,QSA]
+  RewriteRule ^mens-wear/?$ shop.html?cat=mens-wear [L,QSA]
+  RewriteRule ^catalog/?$ shop.html [L,QSA]
+  RewriteRule ^products/?$ shop.html [L,QSA]
+  RewriteRule ^new-arrivals/?$ shop.html [L,QSA]
+  RewriteRule ^offers/?$ offers.html [L,QSA]
+  RewriteRule ^studio/?$ studio.html [L,QSA]
+  RewriteRule ^wishlist/?$ wishlist.html [L,QSA]
+  RewriteRule ^cart/?$ cart.html [L,QSA]
+  RewriteRule ^checkout/?$ checkout.html [L,QSA]
+  RewriteRule ^order-success/?$ order-success.html [L,QSA]
+  RewriteRule ^order-confirmation/?$ order-success.html [L,QSA]
+
+  # Account & Admin routes
+  RewriteRule ^login/?$ login.html [L,QSA]
+  RewriteRule ^account/?$ account.html [L,QSA]
+  RewriteRule ^admin/?$ admin/index.html [L,QSA]
+
+  # Information pages
+  RewriteRule ^contact/?$ contact.html [L,QSA]
+  RewriteRule ^about/?$ about.html [L,QSA]
+  RewriteRule ^size-guide/?$ size-guide.html [L,QSA]
+  RewriteRule ^privacy/?$ privacy.html [L,QSA]
+  RewriteRule ^terms/?$ terms.html [L,QSA]
+  RewriteRule ^shipping-returns/?$ shipping-returns.html [L,QSA]
+
+  # Extensionless HTML files (e.g., /shop loads /shop.html)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# 7. Static Asset Caching (1 Year for images, 1 Month for style/scripts)
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
-# 5. Enable GZIP Compression
+# 8. GZIP Compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
 </IfModule>

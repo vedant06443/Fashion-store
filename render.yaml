@@ -1,6 +1,6 @@
 services:
   - type: static
-    name: suyogtextile
+    name: suyogcollection
     staticPublishPath: ./public
     routes:
       - type: redirect

@@ -1,6 +1,6 @@
-# Suyog Textile — Supabase Backend & Admin Setup Guide
+# Suyog Collection — Supabase Backend & Admin Setup Guide
 
-This guide provides step-by-step instructions to configure, initialize, and maintain the Supabase backend for **Suyog Textile** (`https://suyogtextile.in`).
+This guide provides step-by-step instructions to configure, initialize, and maintain the Supabase backend for **Suyog Collection** (`https://suyogcollection.in`).
 
 ---
 
@@ -90,12 +90,12 @@ In your Supabase dashboard, click **SQL Editor** (icon `>_` on the left sidebar)
 In the Supabase dashboard, navigate to **Authentication** -> **URL Configuration**:
 
 1. **Site URL**:
-   - Set to `https://suyogtextile.in` (or `http://localhost:3000` / `http://127.0.0.1:5500` during local testing).
+   - Set to `https://suyogcollection.in` (or `http://localhost:3000` / `http://127.0.0.1:5500` during local testing).
 2. **Redirect URLs**:
    Add the following paths:
-   - `https://suyogtextile.in/login.html`
-   - `https://suyogtextile.in/account.html`
-   - `https://suyogtextile.in/admin/index.html`
+   - `https://suyogcollection.in/login.html`
+   - `https://suyogcollection.in/account.html`
+   - `https://suyogcollection.in/admin/index.html`
 3. **Email Auth Settings** (under **Authentication** -> **Providers** -> **Email**):
    - **Enable Email Provider**: ON
    - **Confirm email**:
@@ -120,21 +120,21 @@ In the Supabase dashboard, navigate to **Authentication** -> **URL Configuration
 
 Because `profiles.role` cannot be updated through the browser or public API (protected by database trigger `protect_profile_role`), the first showroom administrator must be bootstrapped via the Supabase SQL Editor:
 
-1. Visit your live store or local site at `https://suyogtextile.in/login.html`.
-2. Click **Create an Account** and register your showroom admin email (e.g., `admin@suyogtextile.in` or your personal email) with a strong password.
+1. Visit your live store or local site at `https://suyogcollection.in/login.html`.
+2. Click **Create an Account** and register your showroom admin email (e.g., `admin@suyogcollection.in` or your personal email) with a strong password.
 3. Open the **Supabase SQL Editor** and execute the elevation query:
    ```sql
    UPDATE public.profiles
    SET role = 'admin'
    WHERE id IN (
-     SELECT id FROM auth.users WHERE email = 'admin@suyogtextile.in'
+     SELECT id FROM auth.users WHERE email = 'admin@suyogcollection.in'
    );
    ```
 4. Verify elevation:
    ```sql
    SELECT id, full_name, role FROM public.profiles WHERE role = 'admin';
    ```
-5. You can now access the administrative portal at `https://suyogtextile.in/admin/` and sign in.
+5. You can now access the administrative portal at `https://suyogcollection.in/admin/` and sign in.
 
 ---
 
@@ -149,10 +149,10 @@ Because `profiles.role` cannot be updated through the browser or public API (pro
 6. The `render.yaml` file in the repo root will automatically apply standard URL redirects.
 
 ### Apache / cPanel Deployment (Git Version Control):
-1. In cPanel, go to **Domains** and verify the exact **Document Root** for `suyogtextile.in` (e.g. `/home/username/public_html/` or `/home/username/suyogtextile.in/`).
+1. In cPanel, go to **Domains** and verify the exact **Document Root** for `suyogcollection.in` (e.g. `/home/username/public_html/` or `/home/username/suyogcollection.in/`).
 2. Open `.cpanel.yml` and set `export DEPLOYPATH=/home/YOUR_CPANEL_USER/YOUR_DOCUMENT_ROOT/`.
 3. In cPanel -> **Git™ Version Control**, click **Update from Remote** followed by **Deploy HEAD Commit**.
-4. Test self-verification: visit `https://suyogtextile.in/deploy-check.txt` in your browser. It will immediately print the deployed commit SHA and timestamp!
+4. Test self-verification: visit `https://suyogcollection.in/deploy-check.txt` in your browser. It will immediately print the deployed commit SHA and timestamp!
 5. All live web files are automatically copied from `public/.` into your document root, while `supabase/`, docs, and backend test scripts stay protected outside the web server.
 
 ---

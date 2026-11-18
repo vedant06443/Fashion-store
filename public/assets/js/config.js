@@ -1,9 +1,9 @@
 /**
- * Suyog Textile — Central Business & Supabase Configuration
+ * Suyog Collection — Central Business & Supabase Configuration
  * Single Source of Truth across all static storefront pages.
  */
 window.SITE_CONFIG = {
-  brandName: "Suyog Textile",
+  brandName: "Suyog Collection",
   tagline: "Traditional Indian Wear",
   
   // Supabase Client Settings (PUBLIC anon key and URL; security enforced via RLS)

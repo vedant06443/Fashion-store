@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Portal — Suyog Textile Showroom</title>
+  <title>Admin Portal — Suyog Collection Showroom</title>
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Favicon -->
@@ -459,7 +459,7 @@
 
   <!-- Sign In Gate -->
   <div id="gateSignIn" class="auth-gate-box" style="display:none;">
-    <img src="../assets/images/logo.png" alt="Suyog Textile" class="auth-gate-logo">
+    <img src="../assets/images/logo.png" alt="Suyog Collection" class="auth-gate-logo">
     <h3 style="font-family: var(--font-brand); font-size: 1.35rem; margin-bottom: 4px;">Showroom Admin</h3>
     <div class="admin-badge mb-4 d-inline-block">Staff Access Only</div>
 
@@ -468,7 +468,7 @@
     <form id="adminSignInForm" onsubmit="handleAdminSignIn(event)">
       <div class="mb-3 text-start">
         <label for="adminEmail" class="form-label small text-muted">Admin Email</label>
-        <input type="email" id="adminEmail" class="admin-input" placeholder="admin@suyogtextile.in" required autocomplete="username">
+        <input type="email" id="adminEmail" class="admin-input" placeholder="admin@suyogcollection.in" required autocomplete="username">
       </div>
       <div class="mb-4 text-start">
         <label for="adminPassword" class="form-label small text-muted">Password</label>
@@ -480,7 +480,7 @@
     </form>
     <div class="mt-4 pt-3 border-top border-secondary small text-muted">
       Protected by Row Level Security.<br>
-      <a href="../index.html" style="color:var(--admin-text-muted);text-decoration:underline;">Back to Suyog Textile</a>
+      <a href="../index.html" style="color:var(--admin-text-muted);text-decoration:underline;">Back to Suyog Collection</a>
     </div>
   </div>
 
@@ -509,9 +509,9 @@
     <header class="admin-navbar">
       <div class="d-flex justify-content-between align-items-center">
         <a href="../index.html" class="admin-brand" target="_blank" title="View Storefront in new tab">
-          <img src="../assets/images/logo.png" alt="Suyog Textile Logo">
+          <img src="../assets/images/logo.png" alt="Suyog Collection Logo">
           <div>
-            <div class="admin-brand-text">Suyog Textile <span class="admin-badge">Admin</span></div>
+            <div class="admin-brand-text">Suyog Collection <span class="admin-badge">Admin</span></div>
             <div style="font-size:0.75rem; color:var(--admin-text-muted);">Showroom Management Portal</div>
           </div>
         </a>
@@ -1706,13 +1706,13 @@
         var tracking = document.getElementById('modalOrderTracking').value.trim();
 
         var msg = 'Namaste ' + (selectedOrder.customer_name || 'Customer') + ',\n\n' +
-                  'Update regarding your Suyog Textile order #' + selectedOrder.order_no + ':\n' +
+                  'Update regarding your Suyog Collection order #' + selectedOrder.order_no + ':\n' +
                   'Status: ' + status.toUpperCase() + '\n';
         if (tracking) {
           msg += 'Tracking / Delivery Note: ' + tracking + '\n';
         }
         msg += 'Total: ' + formatInr(selectedOrder.total_inr) + '\n\n' +
-               'Thank you for shopping with Suyog Textile, Nashik!';
+               'Thank you for shopping with Suyog Collection, Nashik!';
 
         var url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
         window.open(url, '_blank');

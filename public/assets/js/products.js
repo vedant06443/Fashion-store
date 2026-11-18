@@ -1,4 +1,4 @@
-// Suyog Textile - Product Catalog Database
+// Suyog Collection - Product Catalog Database
 const PRODUCTS_DATA = [
   {
     id: 1,
@@ -293,13 +293,13 @@ const CATEGORIES_DATA = [
 ];
 
 const STORE_CONFIG = {
-  name: "Suyog Textile",
+  name: "Suyog Collection",
   tagline: "Authentic Indian Ethnic Elegance",
-  domain: "suyogtextile.in",
+  domain: "suyogcollection.in",
   whatsappNumber: "+918669396037",
   whatsappDisplay: "+91 86693 96037",
-  email: "contact@suyogtextile.in",
-  address: "Suyog Textile Showroom, Market Yard, Maharashtra, India",
+  email: "contact@suyogcollection.in",
+  address: "Suyog Collection Showroom, Market Yard, Maharashtra, India",
   coupons: {
     "WELCOME10": { type: "percent", value: 10, minOrder: 999 },
     "FESTIVE20": { type: "percent", value: 20, minOrder: 2999 },
