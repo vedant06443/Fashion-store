@@ -1,150 +1,81 @@
-# ==============================================================================
-# Suyog Collection — cPanel Git Deployment Configuration (.cpanel.yml)
-#
-# cPanel username: c9fct449atzo
-# Document Root: public_html
-# Domain: suyogcollection.com
-# ==============================================================================
 ---
+# ==============================================================================
+# Suyog Collection — cPanel Git Deployment Configuration
+# cPanel username : c9fct449atzo
+# Document Root  : /home/c9fct449atzo/public_html/
+# Domain         : https://suyogcollection.com
+#
+# HOW IT WORKS
+# Each task line is run as a separate shell command by cPanel's runner.
+# Shell variables exported in one line are NOT available in the next line.
+# Therefore every command uses the literal path — no $DEPLOYPATH variable.
+# ==============================================================================
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/c9fct449atzo/public_html/
-    - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R public/. $DEPLOYPATH
-    - /bin/sh -c 'echo "commit $(git rev-parse --short HEAD 2>/dev/null) deployed $(date -u)" > $DEPLOYPATH/deploy-check.txt'
-    # Safe cleanup of legacy files that no longer exist in the current site (no rm -rf, only /bin/rm -f per file)
-    - /bin/rm -f $DEPLOYPATH/index.php
-    - /bin/rm -f $DEPLOYPATH/index.htm
-    - /bin/rm -f $DEPLOYPATH/default.html
-    - /bin/rm -f $DEPLOYPATH/home.html
-    - /bin/rm -f $DEPLOYPATH/.python-version
-    - /bin/rm -f $DEPLOYPATH/admin.html
-    - /bin/rm -f $DEPLOYPATH/admin/categories.html
-    - /bin/rm -f $DEPLOYPATH/admin/coupons.html
-    - /bin/rm -f $DEPLOYPATH/admin/customers.html
-    - /bin/rm -f $DEPLOYPATH/admin/dashboard.html
-    - /bin/rm -f $DEPLOYPATH/admin/notifications.html
-    - /bin/rm -f $DEPLOYPATH/admin/orders.html
-    - /bin/rm -f $DEPLOYPATH/admin/product-form.html
-    - /bin/rm -f $DEPLOYPATH/admin/product_form.html
-    - /bin/rm -f $DEPLOYPATH/admin/products.html
-    - /bin/rm -f $DEPLOYPATH/admin/reviews.html
-    - /bin/rm -f $DEPLOYPATH/invoice.html
-    - /bin/rm -f $DEPLOYPATH/order-detail.html
-    - /bin/rm -f $DEPLOYPATH/orders.html
-    - /bin/rm -f $DEPLOYPATH/register.html
-    - /bin/rm -f $DEPLOYPATH/static/css/responsive.css
-    - /bin/rm -f $DEPLOYPATH/static/css/style.css
-    - /bin/rm -f $DEPLOYPATH/static/images/favicon.png
-    - /bin/rm -f $DEPLOYPATH/static/images/logo.jpg
-    - /bin/rm -f $DEPLOYPATH/static/images/logo.png
-    - /bin/rm -f $DEPLOYPATH/static/images/placeholder.jpg
-    - /bin/rm -f $DEPLOYPATH/static/images/placeholder.svg
-    - /bin/rm -f $DEPLOYPATH/static/images/products/.gitkeep
-    - /bin/rm -f $DEPLOYPATH/static/js/products.js
-    - /bin/rm -f $DEPLOYPATH/static/js/store.js
-    - /bin/rm -f $DEPLOYPATH/vastravibe/.env.example
-    - /bin/rm -f $DEPLOYPATH/vastravibe/.gitignore
-    - /bin/rm -f $DEPLOYPATH/vastravibe/.python-version
-    - /bin/rm -f $DEPLOYPATH/vastravibe/Procfile
-    - /bin/rm -f $DEPLOYPATH/vastravibe/README.md
-    - /bin/rm -f $DEPLOYPATH/vastravibe/alembic.ini
-    - /bin/rm -f $DEPLOYPATH/vastravibe/alembic/README
-    - /bin/rm -f $DEPLOYPATH/vastravibe/alembic/env.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/alembic/script.py.mako
-    - /bin/rm -f $DEPLOYPATH/vastravibe/alembic/versions/001_create_notifications_table.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/config.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/database.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/main.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/__init__.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/address.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/banner.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/cart.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/category.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/coupon.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/newsletter.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/notification.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/order.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/payment.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/product.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/product_image.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/product_variant.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/review.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/user.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/models/wishlist.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/addresses.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/admin.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/auth.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/cart.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/orders.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/pages.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/payments.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/products.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/reviews.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/routers/wishlist.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/schemas/cart.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/schemas/product.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/schemas/user.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/auth_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/cart_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/notification_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/order_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/payment_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/pincode_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/services/product_service.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/css/responsive.css
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/css/style.css
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/images/favicon.png
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/images/logo.jpg
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/images/logo.png
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/images/placeholder.jpg
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/images/placeholder.svg
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/images/products/.gitkeep
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/js/admin_notifications.js
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/js/cart.js
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/js/main.js
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/js/product.js
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/static/js/responsive.js
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/account.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/base.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/categories.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/coupons.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/customers.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/dashboard.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/notifications.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/orders.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/product_form.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/products.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/admin/reviews.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/auth/login.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/auth/register.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/base.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/cart.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/checkout.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/errors/404.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/errors/500.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/home.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/invoice.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/order_confirmation.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/order_detail.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/orders.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/partials/chat_widget.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/partials/product_card.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/partials/size_guide_modal.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/product_detail.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/products.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/studio.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/templates/wishlist.html
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/utils/dependencies.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/utils/helpers.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/utils/image_upload.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/app/utils/security.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/passenger_wsgi.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/requirements.txt
-    - /bin/rm -f $DEPLOYPATH/vastravibe/run.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/scripts/analyze_mangaldeep.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/scripts/inspect_mangaldeep.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/scripts/mangaldeep_analysis.json
-    - /bin/rm -f $DEPLOYPATH/vastravibe/scripts/seed_products.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/tests/conftest.py
-    - /bin/rm -f $DEPLOYPATH/vastravibe/tests/test_api.py
+    # ── Step 1: Ensure target directories exist ──────────────────────────────
+    - /bin/mkdir -p /home/c9fct449atzo/public_html
+    - /bin/mkdir -p /home/c9fct449atzo/public_html/admin
+    - /bin/mkdir -p /home/c9fct449atzo/public_html/assets/css
+    - /bin/mkdir -p /home/c9fct449atzo/public_html/assets/js
+    - /bin/mkdir -p /home/c9fct449atzo/public_html/assets/data
+    - /bin/mkdir -p /home/c9fct449atzo/public_html/assets/images/products
+
+    # ── Step 2: Deploy root-level HTML pages ─────────────────────────────────
+    - /bin/cp public/index.html         /home/c9fct449atzo/public_html/index.html
+    - /bin/cp public/shop.html          /home/c9fct449atzo/public_html/shop.html
+    - /bin/cp public/product.html       /home/c9fct449atzo/public_html/product.html
+    - /bin/cp public/cart.html          /home/c9fct449atzo/public_html/cart.html
+    - /bin/cp public/checkout.html      /home/c9fct449atzo/public_html/checkout.html
+    - /bin/cp public/login.html         /home/c9fct449atzo/public_html/login.html
+    - /bin/cp public/account.html       /home/c9fct449atzo/public_html/account.html
+    - /bin/cp public/wishlist.html      /home/c9fct449atzo/public_html/wishlist.html
+    - /bin/cp public/offers.html        /home/c9fct449atzo/public_html/offers.html
+    - /bin/cp public/studio.html        /home/c9fct449atzo/public_html/studio.html
+    - /bin/cp public/about.html         /home/c9fct449atzo/public_html/about.html
+    - /bin/cp public/contact.html       /home/c9fct449atzo/public_html/contact.html
+    - /bin/cp public/size-guide.html    /home/c9fct449atzo/public_html/size-guide.html
+    - /bin/cp public/order-success.html /home/c9fct449atzo/public_html/order-success.html
+    - /bin/cp public/404.html           /home/c9fct449atzo/public_html/404.html
+
+    # ── Step 3: Deploy Apache config ─────────────────────────────────────────
+    - /bin/cp public/.htaccess /home/c9fct449atzo/public_html/.htaccess
+
+    # ── Step 4: Deploy SEO files ──────────────────────────────────────────────
+    - /bin/cp public/robots.txt   /home/c9fct449atzo/public_html/robots.txt
+    - /bin/cp public/sitemap.xml  /home/c9fct449atzo/public_html/sitemap.xml
+
+    # ── Step 5: Deploy Admin panel ────────────────────────────────────────────
+    - /bin/cp public/admin/index.html /home/c9fct449atzo/public_html/admin/index.html
+
+    # ── Step 6: Deploy CSS ────────────────────────────────────────────────────
+    - /bin/cp public/assets/css/style.css      /home/c9fct449atzo/public_html/assets/css/style.css
+    - /bin/cp public/assets/css/responsive.css /home/c9fct449atzo/public_html/assets/css/responsive.css
+
+    # ── Step 7: Deploy JavaScript ─────────────────────────────────────────────
+    - /bin/cp public/assets/js/config.js        /home/c9fct449atzo/public_html/assets/js/config.js
+    - /bin/cp public/assets/js/layout.js        /home/c9fct449atzo/public_html/assets/js/layout.js
+    - /bin/cp public/assets/js/store.js         /home/c9fct449atzo/public_html/assets/js/store.js
+    - /bin/cp public/assets/js/products.js      /home/c9fct449atzo/public_html/assets/js/products.js
+    - /bin/cp public/assets/js/supabaseClient.js /home/c9fct449atzo/public_html/assets/js/supabaseClient.js
+
+    # ── Step 8: Deploy product data ──────────────────────────────────────────
+    - /bin/cp public/assets/data/products.js /home/c9fct449atzo/public_html/assets/data/products.js
+    - /bin/cp public/assets/data/reviews.js  /home/c9fct449atzo/public_html/assets/data/reviews.js
+
+    # ── Step 9: Deploy images ────────────────────────────────────────────────
+    - /bin/cp public/assets/images/logo.png                  /home/c9fct449atzo/public_html/assets/images/logo.png
+    - /bin/cp public/assets/images/logo.jpg                  /home/c9fct449atzo/public_html/assets/images/logo.jpg
+    - /bin/cp public/assets/images/favicon.png               /home/c9fct449atzo/public_html/assets/images/favicon.png
+    - /bin/cp public/assets/images/placeholder.jpg           /home/c9fct449atzo/public_html/assets/images/placeholder.jpg
+    - /bin/cp public/assets/images/placeholder.svg           /home/c9fct449atzo/public_html/assets/images/placeholder.svg
+    - /bin/cp public/assets/images/hero-traditional-saree.svg /home/c9fct449atzo/public_html/assets/images/hero-traditional-saree.svg
+    - /bin/cp public/assets/images/studio-mix-match.svg      /home/c9fct449atzo/public_html/assets/images/studio-mix-match.svg
+
+    # ── Step 10: Remove legacy files that block the new site ─────────────────
+    - /bin/rm -f /home/c9fct449atzo/public_html/index.php
+    - /bin/rm -f /home/c9fct449atzo/public_html/index.htm
+    - /bin/rm -f /home/c9fct449atzo/public_html/default.html
+    - /bin/rm -f /home/c9fct449atzo/public_html/home.html
+
+    # ── Step 11: Write deployment verification file ───────────────────────────
+    - /bin/sh -c 'echo "Suyog Collection deployed OK - $(date -u)" > /home/c9fct449atzo/public_html/deploy-check.txt'
