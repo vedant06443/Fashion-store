@@ -1,6 +1,6 @@
 # Suyog Collection — cPanel Git Deployment & Verification Guide
 
-This guide describes how to deploy updates to **Suyog Collection** (`https://suyogcollection.in`) on GoDaddy cPanel shared hosting (Apache).
+This guide describes how to deploy updates to **Suyog Collection** (`https://suyogcollection.com`) on GoDaddy cPanel shared hosting (Apache).
 
 ---
 
@@ -8,10 +8,10 @@ This guide describes how to deploy updates to **Suyog Collection** (`https://suy
 
 Before the first deployment, ensure [`.cpanel.yml`](file:///./.cpanel.yml) has your exact cPanel credentials:
 1. Log into your GoDaddy cPanel.
-2. Navigate to **cPanel > Domains** and find the row for `suyogcollection.in`.
+2. Navigate to **cPanel > Domains** and find the row for `suyogcollection.com`.
 3. Check the **Document Root** column:
    - Primary domain: usually `/home/<username>/public_html/`
-   - Addon domain: usually `/home/<username>/suyogcollection.in/` (or `/home/<username>/public_html/suyogcollection.in/`)
+   - Addon domain: usually `/home/<username>/suyogcollection.com/` (or `/home/<username>/public_html/suyogcollection.com/`)
 4. In [`.cpanel.yml`](file:///./.cpanel.yml), configure the `DEPLOYPATH` variable:
    ```yaml
    - export DEPLOYPATH=/home/YOUR_CPANEL_USER/YOUR_DOCUMENT_ROOT/
@@ -25,7 +25,7 @@ Whenever you push new updates to GitHub:
 
 1. **Log in to cPanel**.
 2. Under the **Files** section, click **Git™ Version Control**.
-3. Locate the repository for `suyogcollection.in` and click **Manage**.
+3. Locate the repository for `suyogcollection.com` and click **Manage**.
 4. In the **Basic Information** tab:
    - Click **Update from Remote** (fetches the latest commit from GitHub).
    - Click **Deploy HEAD Commit** (executes `.cpanel.yml` tasks).
@@ -35,7 +35,7 @@ Whenever you push new updates to GitHub:
 ## 3. Verify Deployment Instantly
 
 Open your browser and visit:
-👉 **`https://suyogcollection.in/deploy-check.txt`**
+👉 **`https://suyogcollection.com/deploy-check.txt`**
 
 It will output:
 ```text
@@ -50,7 +50,7 @@ commit <short_sha> deployed <UTC timestamp>
 ## 4. Live Storefront
 
 Visit:
-👉 **`https://suyogcollection.in/`**
+👉 **`https://suyogcollection.com/`**
 
 - If your browser displays cached content, perform a hard refresh with `Ctrl + F5` (Windows) or `Cmd + Shift + R` (Mac).
 - `public/.htaccess` automatically sends `Cache-Control: no-cache, must-revalidate` for all HTML files and `config.js` to ensure shoppers always see the newest version.

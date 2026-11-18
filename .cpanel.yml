@@ -2,11 +2,11 @@
 # Suyog Collection — cPanel Git Deployment Configuration (.cpanel.yml)
 #
 # LOUD TODO:
-# In cPanel, find your exact Linux username and the Document Root for suyogcollection.in:
-#   1. Go to cPanel > Domains > locate 'suyogcollection.in' and read the 'Document Root' column.
+# In cPanel, find your exact Linux username and the Document Root for suyogcollection.com:
+#   1. Go to cPanel > Domains > locate 'suyogcollection.com' and read the 'Document Root' column.
 #   2. Replace 'TODO_CPANEL_USER' below with your actual cPanel Linux username.
 #   3. Replace 'TODO_DOCUMENT_ROOT' below with your domain's actual document root folder
-#      (e.g., 'public_html' if primary, or 'suyogcollection.in' if addon domain).
+#      (e.g., 'public_html' if primary, or 'suyogcollection.com' if addon domain).
 # ==============================================================================
 ---
 deployment:

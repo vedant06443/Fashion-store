@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /account.html
 Disallow: /checkout.html
 
-Sitemap: https://suyogcollection.in/sitemap.xml
+Sitemap: https://suyogcollection.com/sitemap.xml

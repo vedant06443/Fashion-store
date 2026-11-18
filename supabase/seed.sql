@@ -430,7 +430,7 @@ select setval('public.products_id_seq', (select max(id) from public.products));
 -- ADMIN BOOTSTRAP INSTRUCTIONS (SETUP.md)
 -- DO NOT create admin users via seed data or website forms!
 -- To make your user an admin:
--- 1. Sign up normally with your email on https://suyogcollection.in/login.html
+-- 1. Sign up normally with your email on https://suyogcollection.com/login.html
 -- 2. Open Supabase Dashboard -> SQL Editor
 -- 3. Run the following query with your registered email:
 --    update public.profiles

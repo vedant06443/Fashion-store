@@ -295,10 +295,10 @@ const CATEGORIES_DATA = [
 const STORE_CONFIG = {
   name: "Suyog Collection",
   tagline: "Authentic Indian Ethnic Elegance",
-  domain: "suyogcollection.in",
+  domain: "suyogcollection.com",
   whatsappNumber: "+918669396037",
   whatsappDisplay: "+91 86693 96037",
-  email: "contact@suyogcollection.in",
+  email: "contact@suyogcollection.com",
   address: "Suyog Collection Showroom, Market Yard, Maharashtra, India",
   coupons: {
     "WELCOME10": { type: "percent", value: 10, minOrder: 999 },

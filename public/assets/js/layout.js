@@ -11,7 +11,7 @@
     const address = config.address || "Lahoti Mala, 484, Jadhav Sankul road, Ashoknagar, Satpur Colony, Nashik, Maharashtra 422007";
     const mapsUrl = config.mapsUrl || "https://maps.google.com/?q=Lahoti+Mala,+484,+Jadhav+Sankul+road,+Ashoknagar,+Satpur+Colony,+Nashik,+Maharashtra+422007";
     const storeHours = config.storeHours || "10:00 AM – 8:30 PM, all days";
-    const email = config.email || "contact@suyogcollection.in";
+    const email = config.email || "contact@suyogcollection.com";
     const phones = config.phones || [
       { display: "0253 4515460", tel: "02534515460" },
       { display: "+91 86693 96037", tel: "+918669396037" }
