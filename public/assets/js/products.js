@@ -299,7 +299,7 @@ const STORE_CONFIG = {
   whatsappNumber: "+918669396037",
   whatsappDisplay: "+91 86693 96037",
   email: "contact@suyogcollection.com",
-  address: "Suyog Collection Showroom, Market Yard, Maharashtra, India",
+  address: "Jadhav Sankul, Room No 224, Ashok Nagar, Satpur, Nashik, Maharashtra 422012",
   coupons: {
     "WELCOME10": { type: "percent", value: 10, minOrder: 999 },
     "FESTIVE20": { type: "percent", value: 20, minOrder: 2999 },

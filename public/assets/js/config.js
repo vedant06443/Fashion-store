@@ -47,8 +47,8 @@ window.SITE_CONFIG = {
 
   // Store Hours & Contact Details
   storeHours: "10:00 AM – 8:30 PM, all days",
-  address: "Lahoti Mala, 484, Jadhav Sankul road, Ashoknagar, Satpur Colony, Nashik, Maharashtra 422007",
-  mapsUrl: "https://maps.google.com/?q=Lahoti+Mala,+484,+Jadhav+Sankul+road,+Ashoknagar,+Satpur+Colony,+Nashik,+Maharashtra+422007",
+  address: "Jadhav Sankul, Room No 224, Ashok Nagar, Satpur, Nashik, Maharashtra 422012",
+  mapsUrl: "https://maps.google.com/?q=Jadhav+Sankul,+Room+No+224,+Ashok+Nagar,+Satpur,+Nashik,+Maharashtra+422012",
   
   phones: [
     { display: "0253 4515460", tel: "02534515460" },
@@ -57,7 +57,7 @@ window.SITE_CONFIG = {
   whatsappNumber: "918669396037",
   whatsappUrl: "https://wa.me/918669396037",
 
-  email: "TODO_CONFIRM", // TODO_CONFIRM: Official business email address
+  email: "contact@suyogcollection.com",
 
   socialUrls: {
     whatsapp: "https://wa.me/918669396037",
@@ -69,7 +69,7 @@ window.SITE_CONFIG = {
   paymentLinkUrl: "TODO_CONFIRM", // TODO_CONFIRM: External payment link if any
 
   legal: {
-    legalName: "TODO_CONFIRM",        // TODO_CONFIRM: Registered legal entity name
+    legalName: "VAISHALI KEDARNATH KANSE",
     gstin: "TODO_CONFIRM",            // TODO_CONFIRM: 15-digit GSTIN
     grievanceOfficer: "TODO_CONFIRM", // TODO_CONFIRM: Grievance Officer name
     grievanceContact: "TODO_CONFIRM", // TODO_CONFIRM: Grievance Officer contact info

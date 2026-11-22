@@ -8,8 +8,9 @@
     const brandName = config.brandName || "Suyog Collection";
     const tagline = config.tagline || "Traditional Indian Wear";
     const threshold = config.freeShippingThreshold || 1499;
-    const address = config.address || "Lahoti Mala, 484, Jadhav Sankul road, Ashoknagar, Satpur Colony, Nashik, Maharashtra 422007";
-    const mapsUrl = config.mapsUrl || "https://maps.google.com/?q=Lahoti+Mala,+484,+Jadhav+Sankul+road,+Ashoknagar,+Satpur+Colony,+Nashik,+Maharashtra+422007";
+    const address = config.address || "Jadhav Sankul, Room No 224, Ashok Nagar, Satpur, Nashik, Maharashtra 422012";
+    const mapsUrl = config.mapsUrl || "https://maps.google.com/?q=Jadhav+Sankul,+Room+No+224,+Ashok+Nagar,+Satpur,+Nashik,+Maharashtra+422012";
+    const legalName = (config.legal && config.legal.legalName) || "VAISHALI KEDARNATH KANSE";
     const storeHours = config.storeHours || "10:00 AM – 8:30 PM, all days";
     const email = config.email || "contact@suyogcollection.com";
     const phones = config.phones || [
@@ -241,7 +242,7 @@
           </div>
 
           <div class="d-flex flex-wrap justify-content-between align-items-center pt-3 small" style="color:rgba(255,255,255,0.6)">
-            <div>&copy; 2026 ${brandName}. All rights reserved. Nashik, Maharashtra.</div>
+            <div>&copy; 2026 ${brandName} | ${legalName}. All rights reserved. Nashik, Maharashtra.</div>
             <div>Free Pan-India Delivery on orders over ₹${threshold}</div>
           </div>
         </div>
