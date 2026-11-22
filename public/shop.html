@@ -47,7 +47,7 @@
           <a href="index.html" class="navbar-logo">
             <img src="assets/images/logo.png" alt="Suyog Collection" class="brand-logo-img" height="46" width="46" style="height:46px;width:auto;object-fit:contain">
             <span class="brand-text-wrap">
-              <span class="brand-name">Suyog <span class="brand-highlight">Textile</span></span>
+              <span class="brand-name">Suyog <span class="brand-highlight">Collection</span></span>
               <small class="navbar-tagline">Traditional Indian Wear</small>
             </span>
           </a>
@@ -90,7 +90,7 @@
         <a href="index.html" style="font-size:1.2rem;color:var(--primary);"><i class="bi bi-arrow-left"></i></a>
       </div>
       <div class="mobile-header-center">
-        <span class="brand-name" style="font-size:1.15rem;">Suyog <span class="brand-highlight">Textile</span></span>
+        <span class="brand-name" style="font-size:1.15rem;">Suyog <span class="brand-highlight">Collection</span></span>
       </div>
       <div class="mobile-header-right">
         <a href="wishlist.html" class="nav-icon-btn" title="Wishlist">
@@ -151,7 +151,7 @@
           <div class="footer-brand">
             <div class="footer-logo">
               <img src="assets/images/logo.png" alt="Suyog Collection" class="brand-logo-img" height="48" width="48" style="height:48px;width:auto;object-fit:contain">
-              <span>Suyog <span class="brand-highlight">Textile</span></span>
+              <span>Suyog <span class="brand-highlight">Collection</span></span>
             </div>
             <p class="footer-desc">Versatile clothing store offering a wide variety of readymade garments and fabrics for all ages.</p>
           </div>
@@ -159,7 +159,7 @@
         <div>
           <div class="footer-title">Visit Our Store</div>
           <p style="font-size:.85rem;color:rgba(255,255,255,0.75);">
-            📍 Lahoti Mala, 484, Jadhav Sankul road, Ashoknagar, Satpur Colony, Nashik, Maharashtra 422007<br>
+            📍 Jadhav Sankul, Room No 224, Ashok Nagar, Satpur, Nashik, Maharashtra 422012<br>
             📞 +91 86693 96037 / 0253 4515460
           </p>
         </div>
@@ -183,6 +183,8 @@
   <script src="assets/js/store.js"></script>
   <script>
     let activeCategory = 'all';
+    let showNewOnly = false;
+    let newArrivalIds = new Set();
     let loadedProducts = [];
     let loadedCategories = [];
 
@@ -193,6 +195,7 @@
       const sortParam = urlParams.get('sort');
 
       if (catParam) activeCategory = catParam;
+      showNewOnly = urlParams.get('filter') === 'new';
       if (queryParam) document.getElementById('searchInput').value = queryParam;
       if (sortParam) document.getElementById('sortSelect').value = sortParam;
 
@@ -233,7 +236,8 @@
               badge: p.stock < 5 ? 'Limited Stock' : 'Bestseller',
               primaryImage: (p.image_paths && p.image_paths[0]) || 'assets/images/favicon.png',
               hoverImage: (p.image_paths && p.image_paths[1]) || null,
-              description: p.description
+              description: p.description,
+              createdAt: p.created_at
             }));
           }
         } catch (e) {
@@ -249,6 +253,7 @@
           { slug: 'lehengas', name: 'Lehengas' },
           { slug: 'salwar-suits', name: 'Salwar Suits' },
           { slug: 'kurtis', name: 'Kurtis' },
+          { slug: 'dresses', name: 'Gowns' },
           { slug: 'mens-wear', name: 'Mens Wear' }
         ];
       }
@@ -257,8 +262,32 @@
         loadedProducts = window.PRODUCTS_DATA;
       }
 
+      newArrivalIds = computeNewArrivalIds();
+      updateShopHeading();
+
+      // Hide "Top Rated" when no product carries rating data (Supabase products have none yet)
+      if (!loadedProducts.some(p => typeof p.rating === 'number')) {
+        const ratingOpt = document.querySelector('#sortSelect option[value="rating"]');
+        if (ratingOpt) ratingOpt.remove();
+      }
+
       renderCategoryTabs();
       filterCatalog();
+    }
+
+    // New Arrivals = 12 most recently added products (by created_at), or products badged "New Arrival" in the local catalog
+    function computeNewArrivalIds() {
+      const dated = loadedProducts.filter(p => p.createdAt);
+      const list = dated.length
+        ? [...dated].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 12)
+        : loadedProducts.filter(p => /new/i.test(p.badge || ''));
+      return new Set(list.map(p => p.id));
+    }
+
+    function updateShopHeading() {
+      const h = document.getElementById('shopHeaderTitle');
+      if (h) h.textContent = showNewOnly ? 'New Arrivals' : 'Royal Indian Collections';
+      document.title = showNewOnly ? 'New Arrivals — Suyog Collection' : 'All Collections — Suyog Collection';
     }
 
     function renderCategoryTabs() {
@@ -272,7 +301,9 @@
 
     function selectCategory(slug) {
       activeCategory = slug;
-      const newUrl = slug === 'all' ? 'shop.html' : `shop.html?category=${slug}`;
+      showNewOnly = false;
+      updateShopHeading();
+      const newUrl = slug === 'all' ? 'shop.html' : `shop.html?cat=${slug}`;
       window.history.pushState({}, '', newUrl);
       renderCategoryTabs();
       filterCatalog();
@@ -288,11 +319,13 @@
           p.name.toLowerCase().includes(query) || 
           (p.fabric && p.fabric.toLowerCase().includes(query)) ||
           (p.categoryName && p.categoryName.toLowerCase().includes(query));
-        return matchesCat && matchesQuery;
+        const matchesNew = !showNewOnly || newArrivalIds.has(p.id);
+        return matchesCat && matchesQuery && matchesNew;
       });
 
       if (sort === 'price-asc') items.sort((a, b) => a.price - b.price);
       else if (sort === 'price-desc') items.sort((a, b) => b.price - a.price);
+      else if (sort === 'rating') items.sort((a, b) => (b.rating || 0) - (a.rating || 0));
 
       const countEl = document.getElementById('resultsCount');
       if (countEl) countEl.textContent = `Showing ${items.length} ${items.length === 1 ? 'piece' : 'pieces'}`;

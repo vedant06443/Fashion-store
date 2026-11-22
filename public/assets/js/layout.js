@@ -46,7 +46,7 @@
               <a href="index.html" class="navbar-logo" aria-label="${brandName} Home">
                 <img src="assets/images/logo.png" alt="${brandName} Logo" class="brand-logo-img" height="46" width="46" style="height:46px;width:auto;object-fit:contain">
                 <span class="brand-text-wrap">
-                  <span class="brand-name">Suyog <span class="brand-highlight">Textile</span></span>
+                  <span class="brand-name">Suyog <span class="brand-highlight">Collection</span></span>
                   <small class="navbar-tagline">${tagline}</small>
                 </span>
               </a>
@@ -113,7 +113,7 @@
         <div class="mobile-drawer-header">
           <a href="index.html" class="navbar-logo" style="font-size:1.15rem">
             <img src="assets/images/logo.png" alt="${brandName} Logo" class="brand-logo-img" height="36" width="36" style="height:36px;width:auto;object-fit:contain">
-            <span class="brand-name">Suyog <span class="brand-highlight">Textile</span></span>
+            <span class="brand-name">Suyog <span class="brand-highlight">Collection</span></span>
           </a>
           <button class="mobile-drawer-close" onclick="toggleMobileNav()" aria-label="Close Menu">✕</button>
         </div>
